@@ -9,12 +9,12 @@ principles.
 Iterators
 ---------
 
-A basic primitive of the library after functions are iterators. Most functions
-take an iterator and return a new iteraror(s). Iterators all the way down!
+Another basic primitive of the library (after functions) is the iterator. Most functions
+take an iterator and return a new iterator or several ones. Iterators all the way down!
 [#iterators]_.
 
 The simplest iterators are (surprise!) the :func:`pairs` and :func:`ipairs`
-Lua functions. Have you ever tried to call, say, the :func:`ipairs` function
+Lua functions. Have you ever tried calling, say, the :func:`ipairs` function
 without using it inside a ``for`` loop? Try to do that on any Lua
 implementation:
 
@@ -41,7 +41,7 @@ Let's see what each value is used for:
    A some transient state of an iterator that is changed after each iteration.
    For example, the array index in the ``ipairs`` case.
 
-Try to call the ``gen`` function manually:
+Try calling the ``gen`` function manually:
 
    .. code-block:: lua
 
@@ -51,7 +51,7 @@ Try to call the ``gen`` function manually:
 
 The ``gen`` function returned a new state ``1`` and the next iteration
 value ``a``. The second call to ``gen`` with the new state will return the next
-state and the next iteration value. When the iterator finishes to the end
+state and the next iteration value. When the iterator gets to the end
 the ``nil`` value is returned instead of the next state.
 
 **Please do not panic!** You do not have to use these values directly.
@@ -100,9 +100,9 @@ Iterator Types
 Pure functional iterators
 `````````````````````````
 
-Iterators can be either pure functional or have some side effects and return
+Iterators can be either purely functional or have some side effects and return
 different values for the same initial conditions [#pure_function]_. An **iterator is
-pure functional** if it meets the following criteria:
+purely functional** if it meets the following criteria:
 
 - ``gen`` function always returns the same values for the same ``param`` and
   ``state`` values (idempotence property)
@@ -139,7 +139,7 @@ The trace is then optimized and compiled to machine code. When this
 loop is executed again the compiled trace is called instead of the program
 counterpart [#tracing_jit]_.
 
-Why is the tracing JIT important for us? The LuaJIT tracing compiler can detect
+Why is tracing JIT important for us? The LuaJIT tracing compiler can detect
 tail-, up- and down-recursion [#luajit-recursion]_, unroll compositions of
 functions and inline high-order functions [#luajit-optimizations]_.
 All of these concepts make the foundation for functional programming.
